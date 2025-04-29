@@ -17,6 +17,10 @@ jobs:
         with:
           node-version: '18'
 
+      # 新增一步：安装 pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       # 第三步：缓存 Node 模块
       - name: Cache node modules
         uses: actions/cache@v3
