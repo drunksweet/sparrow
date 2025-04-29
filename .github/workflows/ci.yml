@@ -19,7 +19,7 @@ jobs:
 
       # 第三步：缓存 Node 模块
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -27,7 +27,7 @@ jobs:
           key: ${{ runner.os }}-build-cache-node-modules-${{ hashFiles('**/package.json') }}
           restore-keys: |
             cache-node-modules-
-              
+
       # 第四步：安装依赖并运行 CI 脚本
       - name: Run ci
         run: |
