@@ -41,6 +41,12 @@
     "rollup": "^4.40.0"
   },
   "lint-staged": {
-    "*.js": "eslint --fix"
+    "**/*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{json,md,html,css,scss}": [
+      "prettier --write"
+    ]
   }
 }

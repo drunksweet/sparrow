@@ -4,17 +4,20 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: macOS-latest
-    
+    runs-on: ubuntu-latest
+
     steps:
+      # 第一步：检出代码
       - name: Checkout
-        uses: actions/checkout@v2.3.4
-        
+        uses: actions/checkout@v3
+
+      # 第二步：设置 Node.js 环境
       - name: Setup Node.js environment
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@v3
         with:
-          node-version: "12"
-          
+          node-version: '18'
+
+      # 第三步：缓存 Node 模块
       - name: Cache node modules
         uses: actions/cache@v2
         env:
@@ -24,9 +27,9 @@ jobs:
           key: ${{ runner.os }}-build-cache-node-modules-${{ hashFiles('**/package.json') }}
           restore-keys: |
             cache-node-modules-
-
+              
+      # 第四步：安装依赖并运行 CI 脚本
       - name: Run ci
         run: |
-          npm install
-          npm run ci
-
+          pnpm install
+          pnpm run ci
